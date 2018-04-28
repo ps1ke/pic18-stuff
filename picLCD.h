@@ -1,14 +1,15 @@
-#ifndef PICLCD_H_
-#define PICLCD_H_
+#ifndef _PICLCD_H
+#define _PICLCD_H
 
 typedef unsigned int uint;
 typedef unsigned char uchar;
 
 void initLCD();
-void commandLCD(uchar command);
-void writeCharLCD(uchar charLCD);
-void stringLCD(const char *string);
-void stringLCDXY(char row, char pos, const char *string);
+void commandLCD(uchar);
+void writeCharLCD(uchar);
+void stringLCD(const char *);
+void stringLCDXY(char, char, const char *);
 void clearLCD();
+void MSdelay(uint);
 
 #endif 

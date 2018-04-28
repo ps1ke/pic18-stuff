@@ -19,7 +19,7 @@ void initI2CMaster(uint sspadd){
 }
 
 void waitI2CMaster(){
-
+  
   while( (SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
 
@@ -56,7 +56,7 @@ uchar readI2CMaster(uchar akno){
   
   waitI2CMaster();
   
-  if(akno){
+  if(!akno){
     
     ACKDT = 0;
     ACKEN = 1;
@@ -90,12 +90,12 @@ void initI2CSlave(uchar adress){
 
 uchar slaveRECEIVED(){
 
- return sRECEIVE;
+  return sRECEIVE;
 }
 
 void slaveSEND(uchar data){ 
 
-	sSEND = data;
+  sSEND = data;
 }
 
 void interrupt slaveI2C(){
@@ -112,7 +112,7 @@ void interrupt slaveI2C(){
       SSPCON1bits.CKP = 1;
     }
   }
-
+  
   if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW){
     
     sCLEAR = SSPBUF;
@@ -120,7 +120,7 @@ void interrupt slaveI2C(){
     sRECEIVE = SSPBUF;
     SSPCON1bits.CKP = 1;
   }
-
+  
   else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
     
     sCLEAR = SSPBUF;
@@ -129,6 +129,6 @@ void interrupt slaveI2C(){
     SSPCON1bits.CKP = 1;
     while(SSPSTATbits.BF);
   }
-
+  
   SSPIF = 0;
 } 

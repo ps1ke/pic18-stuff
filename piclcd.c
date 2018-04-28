@@ -2,7 +2,7 @@
 #include <pic18.h>
 #include "picLCD.h"
 
-typedef unsigned int uuint;
+typedef unsigned int uint;
 typedef unsigned char uchar;
 
 #define RS LATB0

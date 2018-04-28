@@ -13,7 +13,7 @@ typedef unsigned char uchar;
 void initLCD(){
 
   portLCD = 0;
-  delayMS(20);
+  MSdelay(20);
   commandLCD(0x02);
   commandLCD(0x28);
   commandLCD(0x01);
@@ -28,12 +28,12 @@ void commandLCD(uchar command){
   EN = 1;
   NOP();
   EN = 0;
-  delayMS(1);
+  MSdelay(1);
   low_data = (low_data & 0x0f) | (command<<4);
   EN = 1;
   NOP();
   EN = 0;
-  delayMS(3);
+  MSdelay(3);
 }
 
 void writeCharLCD(uchar charLCD){
@@ -43,12 +43,12 @@ void writeCharLCD(uchar charLCD){
   EN = 1;
   NOP();
   EN = 0;
-  delayMS(1);
+  MSdelay(1);
   low_data = (low_data & 0x0f) | (charLCD<<4);
   EN = 1;
   NOP();
   EN = 0;
-  delayMS(3);
+  MSdelay(3);
 }
 
 void stringLCD(const char *string){
@@ -80,15 +80,15 @@ void stringLCDXY(char row, char pos, const char *string){
 void clearLCD(){
 
   commandLCD(0x01);
-  delayMS(3);
+  MSdelay(3);
 }
 
-void delayMS(uint ms){
+void MSdelay(uint ms){
 
-  uint i,j;
+  int i,j;
 
   for(i = 0; i < ms; i++){
 
-    for(j = 0: j < 33; j++);
+    for(j = 0; j < 33; j++);
   }
 }
